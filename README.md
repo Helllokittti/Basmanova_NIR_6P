@@ -1,6 +1,5 @@
 #  NNI (Neural Network Integration) — Обход проклятия размерности
 
-[![CI/CD](https://github.com/Helllokittti/Basmanova_NIR_6P/test.yml/badge.svg)](https://github.com/Helllokittti/Basmanova_NIR_6P/test.yml)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![TensorFlow 2.15+](https://img.shields.io/badge/tensorflow-2.15+-orange.svg)](https://www.tensorflow.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -79,3 +78,26 @@ python test_nni.py
 
 Текстовый отчёт: nni_final_results.txt
 
+
+### CI/CD (GitHub Actions)
+
+Проект включает автоматический пайплайн тестирования:
+
+```yaml
+name: Test NNI
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run tests
+        run: python test_nni.py --quick
+```
